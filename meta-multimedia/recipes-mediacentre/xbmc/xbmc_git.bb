@@ -9,9 +9,8 @@ DEPENDS = "libmad libusb1 libcec libplist expat yajl gperf-native libxmu fribidi
 
 SRCREV = "82388d55dae79cbb2e486e307e23202e76a43efa"
 
-PV = "11.0"
-PR = "r15"
-PR_append = "+gitr${SRCPV}"
+PV = "11.0+gitr${SRCPV}"
+PR = "r14"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=eden;protocol=git \
            file://0001-configure-don-t-run-python-distutils-to-find-STAGING.patch \
            file://0002-Revert-fixed-ios-Add-memory-barriers-to-atomic-Add-S.patch \
