@@ -35,9 +35,10 @@ RCONFLICTS_${PN} += "task-basic"
 # Util-linux (u)mount is included because the busybox one can't handle /etc/mtab being symlinked to /proc/mounts
 #
 RDEPENDS_${PN} = "\
-	${TASK_BASIC_SSHDAEMON} \
-	avahi-daemon avahi-utils \
-	"
+    ${TASK_BASIC_SSHDAEMON} \
+    avahi-daemon avahi-utils \
+    nfs-utils-client \
+"
 
 #
 # The following section is split in 3:
