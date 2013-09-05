@@ -18,7 +18,7 @@ SRC_URI = "git://github.com/ajaxorg/cloud9.git;name=cloud9ide \
            git://github.com/visionmedia/expresso.git;destsuffix=git/support/connect/support/expresso;name=expresso \
            git://github.com/visionmedia/node-jscoverage.git;destsuffix=git/support/connect/support/expresso/deps/jscoverage;name=jscoverage \
            git://github.com/cloudhead/less.js.git;destsuffix=git/support/connect/support/less;name=less \
-           git://github.com/visionmedia/sass.js.git;destsuffix=git/support/connect/support/sass;name=sass \
+           git://github.com/matehat/sass.js.git;destsuffix=git/support/connect/support/sass;name=sass \
            git://github.com/ajaxorg/jsDAV.git;destsuffix=git/support/jsdav;name=jsdav \
            git://github.com/fjakobs/async.js.git;destsuffix=git/support/jsdav/support/async.js;name=async-js \
            git://github.com/felixge/node-formidable.git;destsuffix=git/support/jsdav/support/formidable;name=formidable \
