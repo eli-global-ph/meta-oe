@@ -2,10 +2,8 @@ inherit qt4e
 
 require qwt.inc
 
-PR = "r1"
-
-SRC_URI[qwt.md5sum] = "ace68558eab873e2da7e641179c4ef0c"
-SRC_URI[qwt.sha256sum] = "3fe19dd5962d705632fc2ef616b009299de6cf1e702538296924dbfdc8003cb2"
+SRC_URI[qwt.md5sum] = "aef0437b37f191067a6a9dc01c30ba64"
+SRC_URI[qwt.sha256sum] = "a7e3d9f1db917d186a973c5f04a316bc9607c7c35794d7a16de323aba5e17402"
 
 RPROVIDES_${PN}-dev = "libqwt-dev"
 
