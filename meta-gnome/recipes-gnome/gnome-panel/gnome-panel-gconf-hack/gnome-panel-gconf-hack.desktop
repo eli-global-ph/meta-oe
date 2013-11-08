@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Init gnome-panel settings
+Comment=Hack to init gconf on first launch
+Exec=/usr/bin/panelconf.sh
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=System;Settings;
