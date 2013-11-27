@@ -34,7 +34,9 @@ do_configure() {
 # wx-config contains entries like this:
 # this_prefix=`check_dirname "/build/v2013.06/build/tmp-angstrom_v2013_06-eglibc/work/cortexa8hf-vfp-neon-angstrom-linux-gnueabi/wxwidgets/2.9.5-r0/wxWidgets-2.9.5"`
 do_install_prepend() {
-	sed -i -e s:${S}:${STAGING_DIR_HOST}${prefix}:g ${S}/wx-config
+	sed -i -e s:${S}:${STAGING_DIR_HOST}${prefix}:g \ 
+	       -e s:--sysroot=${STAGING_DIR_HOST}::g \
+	${S}/wx-config
 }
 
 # wx-config doesn't handle the suffixed libwx_media, xrc, etc, make a compat symlink
@@ -42,6 +44,14 @@ do_install_append() {
 	for lib in adv aui core html media propgrid qa ribbon richtext stc webview xrc ; do
 		ln -sf libwx_gtk2u_$lib-2.9.so.5.0.0 ${D}${libdir}/libwx_gtk2u_$lib-2.9.so
 	done
+
+	# remove sysroot traces
+	sed -i -e s:--sysroot=${STAGING_DIR_HOST}::g ${D}${libdir}/wx/config/*
+
+	# Make native builds work
+	if [ -e ${D}${libdir}/wx/config/${TARGET_PREFIX}gtk2-unicode-2.9 ] ; then
+		ln -sf ${TARGET_PREFIX}gtk2-unicode-2.9 ${D}${libdir}/wx/config/gtk2-unicode-2.9
+	fi
 }
 
 SYSROOT_PREPROCESS_FUNCS += "wxwidgets_sysroot_preprocess"
