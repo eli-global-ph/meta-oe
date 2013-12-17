@@ -3,20 +3,12 @@ DESCRIPTION = "XBMC Media Center"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=6eb631b6da7fdb01508a80213ffc35ff"
 
-DEPENDS = "libusb1 libcec libplist expat yajl gperf-native libxmu fribidi mpeg2dec ffmpeg samba fontconfig curl python libass libmodplug libmicrohttpd wavpack libmms cmake-native libsdl-image libsdl-mixer virtual/egl mysql5 sqlite3 libmms faad2 libcdio libpcre boost lzo enca avahi libsamplerate0 libxinerama libxrandr libxtst bzip2 virtual/libsdl jasper zip-native zlib libtinyxml libmad"
+DEPENDS = "swig-native libxslt  libusb1 libcec expat yajl gperf-native libxmu fribidi mpeg2dec samba fontconfig curl python libass libmodplug libmicrohttpd wavpack libmms cmake-native mysql5 sqlite3 libmms faad2 libcdio libpcre boost lzo enca avahi libsamplerate0 libxinerama libxrandr libxtst bzip2 jasper zip-native zlib libtinyxml libmad taglib libsdl-image-native"
 #require recipes/egl/egl.inc
 
-
-SRCREV = "82388d55dae79cbb2e486e307e23202e76a43efa"
-
-PV = "11.0+gitr${SRCPV}"
-PR = "r14"
-SRC_URI = "git://github.com/xbmc/xbmc.git;branch=eden \
+SRCREV = "bd9a3413d014fa148d70feb7fb1e8b75850e3373"
+SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
            file://0001-configure-don-t-run-python-distutils-to-find-STAGING.patch \
-           file://0002-Revert-fixed-ios-Add-memory-barriers-to-atomic-Add-S.patch \
-           file://0003-Revert-fixed-ios-Add-memory-barriers-to-cas-assembly.patch \
-           file://0004-configure-cope-with-ld-is-gold-DISTRO_FEATURE.patch \
-           file://configure.in-Avoid-running-code.patch \
 "
 
 inherit autotools gettext python-dir
@@ -30,18 +22,22 @@ CACHED_CONFIGUREVARS += " \
     ac_cv_path_PYTHON="${STAGING_BINDIR_NATIVE}/python-native/python" \
 "
 
-PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'opengl', 'opengl', 'openglesv2', d)}"
+PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'opengl', 'opengl', 'openglesv2', d)} sdl airplay ssh"
 PACKAGECONFIG[opengl] = "--enable-gl,--enable-gles,glew"
 PACKAGECONFIG[openglesv2] = "--enable-gles,--enable-gl,"
+PACKAGECONFIG[sdl] = "--enable-sdl,--disable-sdl,libsdl-mixer libsdl-image"
+PACKAGECONFIG[airplay] = "--enable-airplay,--disable-airplay,libplist"
+PACKAGECONFIG[ssh] = "--enable-ssh,--disable-ssh,libssh"
 
 EXTRA_OECONF = " \
-    --disable-rpath \
+    --disable-rsxs \
     --enable-libusb \
-    --enable-airplay \
     --disable-optical-drive \
     --enable-external-libraries \
     ${@base_contains('DISTRO_FEATURES', 'opengl', '--enable-gl', '--enable-gles', d)} \
-"
+    --disable-external-ffmpeg \
+    --with-arch=${TARGET_ARCH} \
+    "
 
 FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations -fomit-frame-pointer -O4 -ffast-math"
 BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
@@ -55,12 +51,15 @@ export STAGING_LIBDIR
 export STAGING_INCDIR
 export PYTHON_DIR
 
+#Needed by TexturePacker to compile it using native sysroot
+export TEXTUREPACKER_NATIVE_ROOT = "${STAGING_DIR_NATIVE}/usr"
+
 do_configure() {
     sh bootstrap
     oe_runconf
 }
 
-PARALLEL_MAKE = ""
+#PARALLEL_MAKE = ""
 
 do_compile_prepend() {
     for i in $(find . -name "Makefile") ; do
