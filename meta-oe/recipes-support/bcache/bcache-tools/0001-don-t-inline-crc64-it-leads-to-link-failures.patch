@@ -1,0 +1,27 @@
+From d12a113082d02684160970c9430c3157369cc080 Mon Sep 17 00:00:00 2001
+From: Koen Kooi <koen@dominion.thruhere.net>
+Date: Tue, 21 Jan 2014 14:45:26 +0100
+Subject: [PATCH] don't inline crc64, it leads to link-failures
+
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+Upstream-status: Pending
+---
+ bcache.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/bcache.c b/bcache.c
+index 8f37445..8b4b986 100644
+--- a/bcache.c
++++ b/bcache.c
+@@ -115,7 +115,7 @@ static const uint64_t crc_table[256] = {
+ 	0x9AFCE626CE85B507ULL
+ };
+ 
+-inline uint64_t crc64(const void *_data, size_t len)
++uint64_t crc64(const void *_data, size_t len)
+ {
+ 	uint64_t crc = 0xFFFFFFFFFFFFFFFFULL;
+ 	const unsigned char *data = _data;
+-- 
+1.7.10
+
