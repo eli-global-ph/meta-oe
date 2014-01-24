@@ -14,8 +14,8 @@ SRC_URI = "git://github.com/liftoff/GateOne.git \
 
 S = "${WORKDIR}/git"
 
-inherit distutils allarch python-dir systemd
 export prefix = "${localstatedir}"
+inherit distutils python-dir systemd
 
 DISTUTILS_INSTALL_ARGS = "--root=${D} \
     --prefix=${prefix} \
