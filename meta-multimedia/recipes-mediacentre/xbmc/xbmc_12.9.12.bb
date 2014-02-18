@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=6eb631b6da7fdb01508a80213ffc35ff"
 DEPENDS = "swig-native libxslt  libusb1 libcec expat yajl gperf-native libxmu fribidi mpeg2dec samba fontconfig curl python libass libmodplug libmicrohttpd wavpack libmms cmake-native mysql5 sqlite3 libmms faad2 libcdio libpcre boost lzo enca avahi libsamplerate0 libxinerama libxrandr libxtst bzip2 jasper zip-native zlib libtinyxml libmad taglib libsdl-image-native"
 #require recipes/egl/egl.inc
 
-SRCREV = "bd9a3413d014fa148d70feb7fb1e8b75850e3373"
+SRCREV = "87bf43f658159464271cb96dc266c5bac0e5de09"
 SRC_URI = "git://github.com/xbmc/xbmc.git;branch=master \
            file://0001-configure-don-t-run-python-distutils-to-find-STAGING.patch \
 "
@@ -43,6 +43,7 @@ FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations -fomit-frame-pointer -O4 -
 BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
 
 EXTRA_OECONF_append_armv7a = "--cpu=cortex-a8"
+ARM_INSTRUCTION_SET = "arm"
 
 # for python modules
 export HOST_SYS
