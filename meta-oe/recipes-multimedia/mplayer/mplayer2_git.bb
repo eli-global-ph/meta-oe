@@ -3,7 +3,7 @@ SECTION = "multimedia"
 HOMEPAGE = "http://www.mplayerhq.hu/"
 DEPENDS = "libvpx live555 libdvdread libtheora virtual/libsdl ffmpeg xsp zlib \
            libpng jpeg liba52 freetype fontconfig alsa-lib lzo ncurses \
-           libxv virtual/libx11 libass speex faad2"
+           libxv virtual/libx11 libass speex faad2 libxxf86dga"
 
 RDEPENDS_${PN} = "mplayer-common"
 PROVIDES = "mplayer"
