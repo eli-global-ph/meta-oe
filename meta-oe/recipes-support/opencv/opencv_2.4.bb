@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://include/opencv2/opencv.hpp;endline=41;md5=6d690d8488a
 
 ARM_INSTRUCTION_SET = "arm"
 
-DEPENDS = "python-numpy libtool swig swig-native python bzip2 zlib glib-2.0"
+DEPENDS = "jasper python-numpy libtool swig swig-native python bzip2 zlib glib-2.0"
 
 SRCREV = "c5afaa4e8dfe507e87531f7688b9cf65c1f701c6"
 SRC_URI = "git://github.com/Itseez/opencv.git;branch=2.4 \
