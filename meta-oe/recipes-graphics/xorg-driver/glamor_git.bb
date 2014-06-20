@@ -6,7 +6,7 @@ DEPENDS += "libdrm"
 LIC_FILES_CHKSUM = "file://COPYING;md5=c7f5e33031114ad132cb03949d73a8a8"
 
 PV = "0.6.0+gitr${SRCPV}"
-SRCREV = "a4fbc7732a1e56de385f50b778aafbdd186e015c"
+SRCREV = "081a53703128d8aa2368856bab289759c593ccff"
 
 SRC_URI = "git://anongit.freedesktop.org/xorg/driver/glamor"
 
