@@ -3,7 +3,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 HOMEPAGE ="http://sourceforge.net/projects/musicpd"
 
-DEPENDS = "libmms libmodplug libcdio yajl wavpack alsa-lib libsamplerate0 libsndfile1 libvorbis libogg faad2 ffmpeg curl sqlite bzip2 pulseaudio audiofile"
+DEPENDS = "jack libmms libmodplug libcdio yajl wavpack alsa-lib libsamplerate0 libsndfile1 libvorbis libogg faad2 ffmpeg curl sqlite bzip2 pulseaudio audiofile"
 
 SRC_URI = " \
     http://www.musicpd.org/download/${PN}/stable/${PN}-0.18.tar.xz \
